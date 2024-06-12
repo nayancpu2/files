@@ -38,7 +38,8 @@ function loadFileList() {
     files.forEach((file, index) => {
         const li = document.createElement('li');
         li.innerHTML = `<a href="${file.content}" download="${file.name}">${file.name}</a>
-                        <button onclick="deleteFile(${index})">Delete</button>`;
+                        <button onclick="deleteFile(${index})">Delete</button>
+                        <button onclick="copyLink('${file.content}')">Copy Link</button>`;
         fileList.appendChild(li);
     });
 }
@@ -48,6 +49,14 @@ function deleteFile(index) {
     files.splice(index, 1);
     localStorage.setItem('files', JSON.stringify(files));
     loadFileList();
+}
+
+function copyLink(link) {
+    navigator.clipboard.writeText(link).then(() => {
+        alert('Link copied to clipboard');
+    }, () => {
+        alert('Failed to copy link');
+    });
 }
 
 document.addEventListener('DOMContentLoaded', function() {
