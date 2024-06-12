@@ -1,7 +1,8 @@
 const PASSWORD = 'yourpassword';  // Set your password here
-const GITHUB_TOKEN = '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';  // Set your GitHub token here
+const GITHUB_TOKEN = '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';  // Set your GitHub token here
 const REPO_OWNER = 'nayancpu2';
 const REPO_NAME = 'files';
+const GITHUB_PAGES_URL = `https://${REPO_OWNER}.github.io/${REPO_NAME}/uploads/`;
 
 function login() {
     const passwordInput = document.getElementById('password').value;
@@ -83,9 +84,10 @@ function loadFileList() {
         }
     }).then(response => response.json()).then(files => {
         files.forEach(file => {
+            const fileUrl = `${GITHUB_PAGES_URL}${file.name}`;
             const li = document.createElement('li');
-            li.innerHTML = `<a href="${file.download_url}" target="_blank">${file.name}</a>
-                            <button onclick="copyLink('${file.download_url}')">Copy Link</button>`;
+            li.innerHTML = `<a href="${fileUrl}" target="_blank">${file.name}</a>
+                            <button onclick="copyLink('${fileUrl}')">Copy Link</button>`;
             fileList.appendChild(li);
         });
     });
