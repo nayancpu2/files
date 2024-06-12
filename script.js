@@ -1,7 +1,7 @@
 const PASSWORD = 'yourpassword';  // Set your password here
 const GITHUB_TOKEN = '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';  // Set your GitHub token here
 const REPO_OWNER = 'nayancpu2';
-const REPO_NAME = 'file-hosting-platform';
+const REPO_NAME = 'files';
 
 function login() {
     const passwordInput = document.getElementById('password').value;
