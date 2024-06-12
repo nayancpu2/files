@@ -1,5 +1,5 @@
 const PASSWORD = 'yourpassword';  // Set your password here
-const GITHUB_TOKEN = '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';  // Set your GitHub token here
+const GITHUB_TOKEN = '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';  // Set your GitHub token here
 const REPO_OWNER = 'nayancpu2';
 const REPO_NAME = 'files';
 const GITHUB_PAGES_URL = `https://${REPO_OWNER}.github.io/${REPO_NAME}/uploads/`;
