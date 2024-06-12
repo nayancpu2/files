@@ -1,5 +1,5 @@
 const PASSWORD = 'yourpassword';  // Set your password here
-const GITHUB_TOKEN = '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';  // Set your GitHub token here
+const GITHUB_TOKEN = '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';  // Set your GitHub token here
 const REPO_OWNER = 'nayancpu2';
 const REPO_NAME = 'files';
 
