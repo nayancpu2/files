@@ -1,7 +1,7 @@
 const PASSWORD = 'yourpassword';  // Set your password here
-const GITHUB_TOKEN = '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';  // Set your GitHub token here
-const REPO_OWNER = 'nayancpu2';
-const REPO_NAME = 'files';
+const GITHUB_TOKEN = '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';  // Set your GitHub token here
+const REPO_OWNER = 'your_github_username';
+const REPO_NAME = 'file-hosting-platform';
 const GITHUB_PAGES_URL = `https://${REPO_OWNER}.github.io/${REPO_NAME}/uploads/`;
 
 function login() {
@@ -27,12 +27,10 @@ async function uploadFile() {
         const content = await fileToBase64(file);
         const path = `uploads/${file.name}`;
         const message = `Add ${file.name}`;
-        const sha = await getFileSHA(path);
 
         const body = {
             message: message,
-            content: content,
-            sha: sha
+            content: content
         };
 
         fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`, {
@@ -46,7 +44,9 @@ async function uploadFile() {
             if (response.ok) {
                 loadFileList();
             } else {
-                alert('File upload failed');
+                response.json().then(data => {
+                    alert('File upload failed: ' + data.message);
+                });
             }
         });
     }
@@ -59,20 +59,6 @@ function fileToBase64(file) {
         reader.onerror = reject;
         reader.readAsBinaryString(file);
     });
-}
-
-async function getFileSHA(path) {
-    const response = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`, {
-        headers: {
-            'Authorization': `token ${GITHUB_TOKEN}`
-        }
-    });
-
-    if (response.ok) {
-        const data = await response.json();
-        return data.sha;
-    }
-    return null;
 }
 
 function loadFileList() {
